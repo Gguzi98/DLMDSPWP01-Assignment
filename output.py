@@ -119,6 +119,17 @@ def create_visualisation(training_data: pd.DataFrame, ideal_data: pd.DataFrame,
             legend_label=f"Ideal {ideal_column}",
         )
 
+        unassigned_points = test_results[test_results["ideal_function"].isna()]
+        panel.scatter(
+            unassigned_points["x"],
+            unassigned_points["y"],
+            size=5,
+            color="lightgray",
+            alpha=0.7,
+            marker="x",
+            legend_label="Unassigned test points",
+        )
+
         assigned_points = test_results[test_results["ideal_function"] == ideal_column]
         panel.scatter(
             assigned_points["x"],
