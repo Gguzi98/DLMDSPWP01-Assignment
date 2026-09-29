@@ -8,7 +8,7 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from main import (
+from analysis import (
     DataValidationError,
     IdealFunctionSelector,
     MappingError,
