@@ -1,5 +1,4 @@
-"""Output layer for the DLMDSPWP01 assignment.
-
+"""
 Writes the results to a SQLite database with SQLAlchemy and draws the Bokeh
 charts. These functions receive finished DataFrames, so the module contains no
 analysis logic of its own.
@@ -15,7 +14,7 @@ PLOT_PATH = "results.html"
 
 
 # ==========================================
-# Section 6: Database persistence
+# Database persistence
 # ==========================================
 
 def persist_to_database(training_data: pd.DataFrame, ideal_data: pd.DataFrame,
@@ -59,7 +58,7 @@ def persist_to_database(training_data: pd.DataFrame, ideal_data: pd.DataFrame,
 
 
 # ==========================================
-# Section 7: Visualisation
+# Visualisation
 # ==========================================
 
 def create_visualisation(training_data: pd.DataFrame, ideal_data: pd.DataFrame,

@@ -1,4 +1,4 @@
-"""Unit tests for the DLMDSPWP01 analysis program.
+"""Unit tests for the analysis program.
 
 Run with: python -m unittest test_main.py -v
 """

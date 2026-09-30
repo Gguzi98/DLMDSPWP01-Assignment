@@ -1,8 +1,8 @@
 """DLMDSPWP01: Programming with Python
 
-Runs the full analysis: for each of the four training functions the ideal
+Runs the full analysis: for each of the four training functions an ideal
 function with the smallest sum of squared errors is selected, and the test data
-is then mapped to those functions using the sqrt(2) criterion.
+is then mapped to those functions using the sqrt(2) threshold criteria.
 
 Pipeline:
 1. Load the three CSV files
@@ -32,11 +32,11 @@ from output import create_visualisation, persist_to_database
 
 
 # ==========================================
-# Section 8: Main execution
+# Main execution
 # ==========================================
 
 def main() -> None:
-    """Run the full analysis from loading the data to writing the output files."""
+    """Run the full analysis from data loading to the output files."""
     try:
         training_data = load_csv(TRAIN_PATH)
         ideal_data = load_csv(IDEAL_PATH)

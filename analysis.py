@@ -1,4 +1,4 @@
-"""Analysis logic for the DLMDSPWP01 assignment.
+"""Full analytical logic for the assignment.
 
 Contains the dataset loading and validation helpers, the custom exceptions and
 the three model classes that select the ideal functions and map the test data.
@@ -33,7 +33,8 @@ class MappingError(Exception):
 # ==========================================
 
 def load_csv(path: str) -> pd.DataFrame:
-    """Read one CSV file into a DataFrame.
+    """
+    Read one CSV file into a DataFrame.
 
     Args:
         path: Location of the CSV file.
@@ -91,11 +92,8 @@ def validate_dataset(name: str, data: pd.DataFrame, expected_columns: list) -> N
 # ==========================================
 
 class ModelAnalyzer:
-    """Base class holding the datasets and the SSE calculation.
-
-    Attributes:
-        training_data: DataFrame with columns x, y1 to y4.
-        ideal_data: DataFrame with columns x, y1 to y50.
+    """
+    Base class holding the datasets and the SSE calculation.
     """
 
     def __init__(self, training_data: pd.DataFrame, ideal_data: pd.DataFrame):
@@ -107,13 +105,6 @@ class ModelAnalyzer:
         """Calculate the sum of squared errors between two series.
 
         Formula: SSE = sum((training value - ideal value) ** 2)
-
-        Args:
-            training_values: Values of one training function.
-            ideal_values: Values of one ideal function.
-
-        Returns:
-            The sum of squared errors as a float.
         """
         differences = training_values - ideal_values
         return float((differences ** 2).sum())
@@ -126,7 +117,7 @@ class ModelAnalyzer:
 class IdealFunctionSelector(ModelAnalyzer):
     """Child class that selects the best ideal function per training function.
 
-    Inherits the datasets and the SSE calculation from ModelAnalyzer.
+    Inherits datasets and SSE calculation from ModelAnalyzer.
 
     Attributes:
         best_ideals: Chosen ideal column and its SSE per training column.
@@ -134,13 +125,13 @@ class IdealFunctionSelector(ModelAnalyzer):
     """
 
     def __init__(self, training_data: pd.DataFrame, ideal_data: pd.DataFrame):
-        """Initialise the parent class and prepare the result dictionaries."""
+        """Initialise parent class and prepare result dictionaries."""
         super().__init__(training_data, ideal_data)
         self.best_ideals = {}
         self.thresholds = {}
 
     def find_best_ideals(self) -> dict:
-        """Find the ideal function with the smallest SSE for each training function.
+        """Find ideal function with the smallest SSE for each training function.
 
         Compares each of the four training functions against all fifty ideal
         functions, which is 200 SSE calculations in total.
@@ -211,9 +202,9 @@ class IdealFunctionSelector(ModelAnalyzer):
 # ==========================================
 
 class TestDataMapper(IdealFunctionSelector):
-    """Child class that assigns the test points to the selected ideal functions.
+    """Child class that assigns test points to the selected ideal functions.
 
-    Inherits the selection of the ideal functions and the threshold
+    Inherits the selected ideal functions and the threshold
     calculation, because a test point can only be mapped once both are known.
 
     Attributes:
